@@ -16,7 +16,7 @@ class Book extends Component{
             shelf: targetShelf
         }
 
-        this.props.onShelfChange(book)
+        this.props.onShelfChange(book, targetShelf)
     }
 
     render(){
@@ -49,7 +49,7 @@ class Book extends Component{
                     </div>
                     <div className="book-title">{book.title}</div>
                     {/* // TODO ==> Loop over the authors */}
-                    {book.authors.map(name =>(
+                    {book.authors && book.authors.map(name =>(
                         <div className="book-authors">{name}</div>
                     ))}
                 </div>
