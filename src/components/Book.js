@@ -33,7 +33,6 @@ class Book extends Component{
                         <div className="book-cover" style={{
                             width: 128,
                             height: 193,
-                            // TODO: change imgURL to the variable that comes form the backend
                             backgroundImage: `url(${image})`,
                             backgroundSize: 'cover',
                             backgroundPosition: 'center',
@@ -54,7 +53,6 @@ class Book extends Component{
                         </div>
                     </div>
                     <div className="book-title">{book.title}</div>
-                    {/* // TODO ==> Loop over the authors */}
                     {book.authors && book.authors.map(name =>(
                         <div className="book-authors">{name}</div>
                     ))}
