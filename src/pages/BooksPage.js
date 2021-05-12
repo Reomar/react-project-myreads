@@ -1,19 +1,22 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Book from '../components/Book'
+import { getAll } from '../BooksAPI'
 
 class BooksPage extends Component {
 
-    /**
-     * wantToRead
-     * read
-     * currentlyReading
-     */
     state = {
         books : []
     }
 
     // TODO==> get books Data from the backend
+    componentDidMount(){
+        getAll().then((res) => {
+            this.setState({
+                books: res
+            })
+        })
+    }
 
     // Return books that matches the self key
     getShelfBooks = (shelfName) => this.state.books.filter(book => book.shelf == shelfName)
