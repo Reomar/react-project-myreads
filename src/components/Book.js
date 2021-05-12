@@ -1,3 +1,4 @@
+import { node } from 'prop-types'
 import React, { Component } from 'react'
 import BooksPage from '../pages/BooksPage'
 
@@ -24,13 +25,15 @@ class Book extends Component{
 
         return(
             <li>
-                <div className="book">
+                <div className="book" key={book.id}>
                     <div className="book-top">
                         <div className="book-cover" style={{
                             width: 128,
                             height: 193,
                             // TODO: change imgURL to the variable that comes form the backend
-                            backgroundImage: `url(${book.imgURL})`,
+                            backgroundImage: `url(${book.imageLinks.thumbnail})`,
+                            backgroundSize: 'cover',
+                            backgroundPosition: 'center',
                         }}>
                         </div>
                         <div className="book-shelf-changer">
