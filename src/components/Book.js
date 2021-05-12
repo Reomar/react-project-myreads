@@ -1,6 +1,7 @@
 import { node } from 'prop-types'
 import React, { Component } from 'react'
 import BooksPage from '../pages/BooksPage'
+import defaultBG from "../icons/noImg.png"
 
 
 class Book extends Component{
@@ -23,6 +24,8 @@ class Book extends Component{
     render(){
         const book = this.props.book
 
+        const image =  book.imageLinks ? book.imageLinks.thumbnail : defaultBG
+
         return(
             <li>
                 <div className="book">
@@ -31,7 +34,7 @@ class Book extends Component{
                             width: 128,
                             height: 193,
                             // TODO: change imgURL to the variable that comes form the backend
-                            backgroundImage: `url(${book.imageLinks.thumbnail})`,
+                            backgroundImage: `url(${image})`,
                             backgroundSize: 'cover',
                             backgroundPosition: 'center',
                         }}>
