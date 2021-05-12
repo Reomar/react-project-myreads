@@ -60,14 +60,14 @@ class BooksPage extends Component {
 
                 <div className="list-books-content">
                         {shelves.map(shelf => (
-                            <div className="bookshelf">
+                            <div className="bookshelf" key={shelf.id}>
                                 <h2 className="bookshelf-title">{shelf.name}</h2>
 
                                 <div className="bookshelf-books">
                                     <ol className="books-grid">
 
                                         {this.getShelfBooks(shelf.id).map(book => (
-                                            < Book book={book} onShelfChange={this.changeShelf}/>
+                                            < Book key={book.id} book={book} onShelfChange={this.changeShelf}/>
                                         ))}
 
                                     </ol>
