@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import BooksPage from '../pages/BooksPage'
 
 
 class Book extends Component{
@@ -28,6 +29,7 @@ class Book extends Component{
                         <div className="book-cover" style={{
                             width: 128,
                             height: 193,
+                            // TODO: change imgURL to the variable that comes form the backend
                             backgroundImage: `url(${book.imgURL})`,
                         }}>
                         </div>
@@ -47,7 +49,9 @@ class Book extends Component{
                     </div>
                     <div className="book-title">{book.title}</div>
                     {/* // TODO ==> Loop over the authors */}
-                    <div className="book-authors">{book.authors[0]}</div>
+                    {book.authors.map(name =>(
+                        <div className="book-authors">{name}</div>
+                    ))}
                 </div>
             </li>
         )

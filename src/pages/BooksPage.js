@@ -9,13 +9,12 @@ class BooksPage extends Component {
      * read
      * currentlyReading
      */
-
     state = {
         books : [
             {
             id: 'nggnmAEACAAJ',
             title: '1776',
-            authors: ['David McCullough'],
+            authors: ['David McCullough', 'omar'],
             imgURL: 'http://books.google.com/books/content?id=uu1mC6zWNTwC&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE73pGHfBNSsJG9Y8kRBpmLUft9O4BfItHioHolWNKOdLavw-SLcXADy3CPAfJ0_qMb18RmCa7Ds1cTdpM3dxAGJs8zfCfm8c6ggBIjzKT7XR5FIB53HHOhnsT7a0Cc-PpneWq9zX&source=gbs_api',
             shelf: 'wantToRead'
         },{
@@ -39,6 +38,8 @@ class BooksPage extends Component {
         }
     ]
     }
+
+    // TODO==> get books Data from the backend
 
     // Return books that matches the self key
     getShelfBooks = (shelfName) => this.state.books.filter(book => book.shelf == shelfName)
