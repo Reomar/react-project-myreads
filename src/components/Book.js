@@ -17,7 +17,7 @@ class Book extends Component{
             shelf: targetShelf
         }
 
-        this.props.onShelfChange(book, targetShelf)
+        this.props.onShelfChange(book)
     }
 
     render(){
