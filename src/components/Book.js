@@ -1,6 +1,4 @@
-import { node } from 'prop-types'
 import React, { Component } from 'react'
-import BooksPage from '../pages/BooksPage'
 import defaultBG from "../icons/noImg.png"
 
 
@@ -54,7 +52,7 @@ class Book extends Component{
                     </div>
                     <div className="book-title">{book.title}</div>
                     {book.authors && book.authors.map(name =>(
-                        <div className="book-authors">{name}</div>
+                        <div key={Math.random()} className="book-authors">{name}</div>
                     ))}
                 </div>
             </li>

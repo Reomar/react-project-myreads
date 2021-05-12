@@ -9,7 +9,6 @@ class BooksPage extends Component {
         books : []
     }
 
-    // TODO==> get books Data from the backend
     componentDidMount(){
         getAll().then((res) => {
             this.setState({
@@ -19,13 +18,13 @@ class BooksPage extends Component {
     }
 
     // Return books that matches the self key
-    getShelfBooks = (shelfName) => this.state.books.filter(book => book.shelf == shelfName)
+    getShelfBooks = (shelfName) => this.state.books.filter(book => book.shelf === shelfName)
 
     // Change Book Shelf
     changeShelf = (book) => {
         // Update the backend
         update(book, book.shelf)
-        book.shelf == 'none'
+        book.shelf === 'none'
             ? this.setState((currentState) => ({
                 books: currentState.books.filter((b) => b.id !== book.id)
             }))

@@ -25,7 +25,6 @@ class BooksSearch extends Component{
    * Get Books data and update the state with the retrieved data
    */
   searchBooks = (input) =>{
-    const userInput = this.state.userInput
 
     if(input){
       search(input).then(res => {
@@ -33,7 +32,7 @@ class BooksSearch extends Component{
       })
     }
 
-    if (input == 0) this.setState({books: []})
+    if (input.length === 0) this.setState({books: []})
   }
 
   // Change Shelf in the Backend
