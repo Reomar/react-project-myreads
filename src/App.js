@@ -6,10 +6,6 @@ import { Route } from 'react-router-dom'
 import BooksPage from './pages/BooksPage'
 
 class BooksApp extends React.Component {
-  state = {
-
-  }
-
   render() {
     return (
       <div className="app">
