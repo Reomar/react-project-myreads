@@ -3,19 +3,39 @@ import { Link } from "react-router-dom";
 import {Book}  from '../components/Book'
 
 class BooksPage extends Component {
+
+    /**
+     * Currently Reading => 1
+     * Want to Read => 2
+     * Read => 3
+     */
+
+    state = {
+        books : [{
+            id: 'nggnmAEACAAJ',
+            title: '1776',
+            authors: ['David McCullough'],
+            imgURL: 'http://books.google.com/books/content?id=uu1mC6zWNTwC&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE73pGHfBNSsJG9Y8kRBpmLUft9O4BfItHioHolWNKOdLavw-SLcXADy3CPAfJ0_qMb18RmCa7Ds1cTdpM3dxAGJs8zfCfm8c6ggBIjzKT7XR5FIB53HHOhnsT7a0Cc-PpneWq9zX&source=gbs_api',
+            self: '1'
+        }]
+    }
+
     render() {
     return (
     <div className="list-books">
         <div className="list-books-title">
             <h1>MyReads</h1>
         </div>
+
         <div className="list-books-content">
             <div>
                 <div className="bookshelf">
                     <h2 className="bookshelf-title">Currently Reading</h2>
                     <div className="bookshelf-books">
                         <ol className="books-grid">
-                            < Book />
+
+                            < Book book={this.state.books[0]} />
+
                         </ol>
                     </div>
                 </div>
