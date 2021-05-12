@@ -1,7 +1,9 @@
 import React from 'react'
 
 
-function Book(){
+function Book(props){
+
+    const book = props.book
     return(
         <li>
             <div className="book">
@@ -9,7 +11,7 @@ function Book(){
                     <div className="book-cover" style={{
                         width: 128,
                         height: 193,
-                        backgroundImage:'url("http://books.google.com/books/content?id=uu1mC6zWNTwC&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE73pGHfBNSsJG9Y8kRBpmLUft9O4BfItHioHolWNKOdLavw-SLcXADy3CPAfJ0_qMb18RmCa7Ds1cTdpM3dxAGJs8zfCfm8c6ggBIjzKT7XR5FIB53HHOhnsT7a0Cc-PpneWq9zX&source=gbs_api")',
+                        backgroundImage: `url(${book.imgURL})`,
                     }}>
                     </div>
                     <div className="book-shelf-changer">
@@ -26,8 +28,9 @@ function Book(){
                         </select>
                     </div>
                 </div>
-                <div className="book-title">1776</div>
-                <div className="book-authors">David McCullough</div>
+                <div className="book-title">{book.title}</div>
+                {/* // TODO ==> Loop over the authors */}
+                <div className="book-authors">{book.authors[0]}</div>
             </div>
         </li>
     )
