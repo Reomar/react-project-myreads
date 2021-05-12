@@ -39,14 +39,6 @@ class BooksSearch extends Component{
   // Change Shelf in the Backend
   addToShelf = (book ) => {
     update(book, book.shelf)
-    console.log(book, book.shelf)
-    
-    // Remove the book from view
-    this.setState(currentState =>{
-      books: currentState.books.filter((b) => b.id !== book.id)
-    })
-    
-
   }
 
   render(){
