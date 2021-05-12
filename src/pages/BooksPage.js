@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Book from '../components/Book'
-import { getAll } from '../BooksAPI'
+import { getAll, update } from '../BooksAPI'
 
 class BooksPage extends Component {
 
@@ -23,7 +23,8 @@ class BooksPage extends Component {
 
     // Change Book Shelf
     changeShelf = (book) => {
-        // TODO=> Update the backend
+        // Update the backend
+        update(book, book.shelf)
         book.shelf == 'none'
             ? this.setState((currentState) => ({
                 books: currentState.books.filter((b) => b.id !== book.id)
