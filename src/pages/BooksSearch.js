@@ -1,6 +1,6 @@
 import React , {Component} from 'react'
 import { Link } from 'react-router-dom'
-import { search } from '../BooksAPI'
+import { search , update} from '../BooksAPI'
 import Book from '../components/Book'
 
 class BooksSearch extends Component{
@@ -10,6 +10,9 @@ class BooksSearch extends Component{
     books: []
   }
 
+ /**
+  * Update the input state and send the input to searchBooks()
+  */
   handleChange = input => {
     this.setState({
       userInput: input
@@ -18,7 +21,9 @@ class BooksSearch extends Component{
     this.searchBooks(input)
   }
 
-  // Get Data from The API
+  /**
+   * Get Books data and update the state with the retrieved data
+   */
   searchBooks = (input) =>{
     const userInput = this.state.userInput
 
@@ -29,6 +34,19 @@ class BooksSearch extends Component{
     }
 
     if (input == 0) this.setState({books: []})
+  }
+
+  // Change Shelf in the Backend
+  addToShelf = (book ) => {
+    update(book, book.shelf)
+    console.log(book, book.shelf)
+    
+    // Remove the book from view
+    this.setState(currentState =>{
+      books: currentState.books.filter((b) => b.id !== book.id)
+    })
+    
+
   }
 
   render(){
@@ -49,7 +67,7 @@ class BooksSearch extends Component{
             <ol className="books-grid">
                   { this.state.books.length > 0 &&
                     this.state.books.map(book => (
-                      < Book book={book} />
+                      < Book  key={book.id} book={book} onShelfChange={this.addToShelf} />
                     ))
                   }
             </ol>
