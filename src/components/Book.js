@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-export default Book = ()=>{
+function Book(){
     return(
         <li>
             <div className="book">
@@ -32,3 +32,5 @@ export default Book = ()=>{
         </li>
     )
 }
+
+export{ Book }
