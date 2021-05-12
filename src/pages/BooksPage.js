@@ -40,65 +40,54 @@ class BooksPage extends Component {
     ]
     }
 
-    getShelfBooks = (shelfNum) => this.state.books.filter(book => book.shelf == shelfNum)
+    // Return books that matches the self key
+    getShelfBooks = (shelfName) => this.state.books.filter(book => book.shelf == shelfName)
 
     render() {
-    return (
-    <div className="list-books">
-        <div className="list-books-title">
-            <h1>MyReads</h1>
-        </div>
 
-        <div className="list-books-content">
-            <div>
-                <div className="bookshelf">
-                    <h2 className="bookshelf-title">Currently Reading</h2>
-                    <div className="bookshelf-books">
-                        <ol className="books-grid">
+        const shelves = [
+            {
+                id: 'currentlyReading',
+                name: 'Currently Reading'
+            },{
+                id: 'wantToRead',
+                name: 'Want to Read',
+            },{
+                id: 'read',
+                name: 'Read'
+            }
+        ]
 
-                            {this.getShelfBooks('currentlyReading').map(b => (
-                                < Book book={b}/>
-                            ))}
 
-                        </ol>
-                    </div>
+        return (
+            <div className="list-books">
+                <div className="list-books-title">
+                    <h1>MyReads</h1>
                 </div>
 
+                <div className="list-books-content">
+                        {shelves.map(shelf => (
+                            <div className="bookshelf">
+                                <h2 className="bookshelf-title">{shelf.name}</h2>
 
-                <div className="bookshelf">
-                    <h2 className="bookshelf-title">Want to Read</h2>
-                    <div className="bookshelf-books">
-                        <ol className="books-grid">
+                                <div className="bookshelf-books">
+                                    <ol className="books-grid">
 
-                            {this.getShelfBooks('wantToRead').map(b => (
-                                < Book book={b}/>
-                            ))}
+                                        {this.getShelfBooks(shelf.id).map(book => (
+                                            < Book book={book}/>
+                                        ))}
 
-                        </ol>
-                    </div>
+                                    </ol>
+                                    </div>
+                            </div>
+                        ))}
                 </div>
 
-                <div className="bookshelf">
-                    <h2 className="bookshelf-title">Read</h2>
-                    <div className="bookshelf-books">
-                        <ol className="books-grid">
-
-                            {this.getShelfBooks('read').map(b => (
-                                < Book book={b}/>
-                            ))}
-
-                        </ol>
-                    </div>
+                <div className="open-search">
+                    <Link to="/search">Add a book</Link>
                 </div>
-
-
             </div>
-        </div>
-        <div className="open-search">
-            <Link to="/search">Add a book</Link>
-        </div>
-    </div>
-    );
+        );
     }
 }
 
