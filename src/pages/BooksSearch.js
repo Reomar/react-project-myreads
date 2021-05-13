@@ -1,6 +1,6 @@
 import React , {Component} from 'react'
 import { Link } from 'react-router-dom'
-import { search , update} from '../BooksAPI'
+import { search , update , getAll} from '../BooksAPI'
 import Book from '../components/Book'
 
 class BooksSearch extends Component{
@@ -21,24 +21,45 @@ class BooksSearch extends Component{
       userInput: input
     })
 
-    this.searchBooks(input)
+    input.length !== 0 && this.searchBooks(input)
   }
 
   /**
    * Get Books data and update the state with the retrieved data
    */
-  searchBooks = (input) =>{
+  searchBooks =  async (input) =>{
+    const shelfBooks = await getAll()
+    const searchResult = await search(input)
 
-    if(input){
-      search(input).then(res => {
-        res.error ? this.setState({books: []}) : this.setState({books: res})
-      })
+    if(searchResult.error){
+      this.setState({books: []})
+      return 0
     }
+
+    this.setState({
+      books: searchResult.map(b => ({...b, shelf:this.getShelfName(shelfBooks, b)}))
+    })
 
   }
 
+  getShelfName = (shelfBooks, currentBook) => {
+
+    let shelfName
+    
+    shelfBooks.forEach(shelfBook => {
+      if(shelfBook.id === currentBook.id){
+        shelfName = shelfBook.shelf
+      }
+    });
+
+    if(!shelfName) shelfName = 'none'
+
+    return shelfName
+  }
+
+
   // Change Shelf in the Backend
-  addToShelf = (book ) => {
+  changShelf = (book ) => {
     update(book, book.shelf)
   }
 
@@ -60,7 +81,7 @@ class BooksSearch extends Component{
             <ol className="books-grid">
                   { this.state.books.length > 0 && this.state.userInput &&
                     this.state.books.map(book => (
-                      < Book  key={book.id} book={book} onShelfChange={this.addToShelf} />
+                      < Book  key={book.id} book={book} onShelfChange={this.changShelf} />
                     ))
                   }
             </ol>
