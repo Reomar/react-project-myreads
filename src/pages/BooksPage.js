@@ -31,8 +31,6 @@ class BooksPage extends Component {
             : this.setState(currentState => ({
                 books : currentState.books.filter((b) => b.id !== book.id).concat(book)
             }))
-
-        console.log(this.state.books)
     }
 
     render() {
