@@ -1,23 +1,9 @@
 import React, { Component } from 'react'
 import defaultBG from "../icons/noImg.png"
+import ShelfChanger from './ShelfChanger'
 
 
 class Book extends Component{
-
-    state = {
-        shelf : ''
-    }
-    //Handle Shelf change
-    handleChange = (e) => {
-        const targetShelf = e.target.value
-        console.log(targetShelf)
-        const book = {
-            ...this.props.book,
-            shelf: targetShelf
-        }
-
-        this.props.onShelfChange(book)
-    }
 
     render(){
         const book = this.props.book
@@ -37,17 +23,7 @@ class Book extends Component{
                         }}>
                         </div>
                         <div className="book-shelf-changer">
-                            <select value={book.shelf} onChange={this.handleChange}>
-                                <option value="move" disabled>
-                                    Move to...
-                                </option>
-                                <option value="currentlyReading">
-                                    Currently Reading
-                                </option>
-                                <option value="wantToRead">Want to Read</option>
-                                <option value="read">Read</option>
-                                <option value="none">None</option>
-                            </select>
+                            <ShelfChanger onShelfChange={this.props.onShelfChange} ShelfName={book.shelf} book={book}/>
                         </div>
                     </div>
                     <div className="book-title">{book.title}</div>
