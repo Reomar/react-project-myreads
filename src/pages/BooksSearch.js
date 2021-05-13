@@ -14,6 +14,9 @@ class BooksSearch extends Component{
   * Update the input state and send the input to searchBooks()
   */
   handleChange = input => {
+    // empty books state when there is no input
+    input.length === 0 && this.setState({books: []})
+
     this.setState({
       userInput: input
     })
@@ -32,7 +35,6 @@ class BooksSearch extends Component{
       })
     }
 
-    if (input.length === 0) this.setState({books: []})
   }
 
   // Change Shelf in the Backend
@@ -56,7 +58,7 @@ class BooksSearch extends Component{
           </div>
           <div className="search-books-results">
             <ol className="books-grid">
-                  { this.state.books.length > 0 &&
+                  { this.state.books.length > 0 && this.state.userInput &&
                     this.state.books.map(book => (
                       < Book  key={book.id} book={book} onShelfChange={this.addToShelf} />
                     ))
